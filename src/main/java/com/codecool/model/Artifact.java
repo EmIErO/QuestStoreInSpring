@@ -65,4 +65,15 @@ public class Artifact {
     public int hashCode() {
         return Objects.hash(artifactId);
     }
+
+    @Override
+    public String toString() {
+        return "Artifact{" +
+                "artifactId=" + artifactId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }
