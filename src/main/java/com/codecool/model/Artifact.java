@@ -21,6 +21,10 @@ public class Artifact {
         return artifactId;
     }
 
+    public void setArtifactId(int artifactId) {
+        this.artifactId = artifactId;
+    }
+
     public String getName() {
         return name;
     }
