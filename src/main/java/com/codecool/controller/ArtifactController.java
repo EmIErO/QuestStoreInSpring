@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/artifacts")
 @Controller
 public class ArtifactController {
 
@@ -18,7 +19,13 @@ public class ArtifactController {
         this.artifactService = artifactService;
     }
 
-    @RequestMapping("/artifacts")
+    @RequestMapping
+    public String showDefault(Model model) {
+        model.addAttribute("artifacts", artifactService.getAllArtifacts());
+        return "artifacts";
+    }
+
+    @RequestMapping("/all")
     public String list(Model model) {
         model.addAttribute("artifacts", artifactService.getAllArtifacts());
         return "artifacts";

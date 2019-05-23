@@ -16,7 +16,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @RequestMapping("/order/1")
+    @RequestMapping("/order/{numericId:[\\d]+}")
     public String proccess() {
         orderService.proccessOrder(1);
         return "redirect:/artifacts";
