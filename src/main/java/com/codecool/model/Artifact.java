@@ -8,13 +8,16 @@ public class Artifact {
     private String name;
     private int price;
     private String description;
-    private String category;
+    private ArtifactCategory category;
 
-    public Artifact(String name, int price, String description, String category) {
+    public Artifact(String name, int price, String description, ArtifactCategory category) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.category = category;
+    }
+
+    public Artifact() {
     }
 
     public int getArtifactId() {
@@ -49,11 +52,11 @@ public class Artifact {
         this.description = description;
     }
 
-    public String getCategory() {
+    public ArtifactCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ArtifactCategory category) {
         this.category = category;
     }
 
@@ -77,7 +80,7 @@ public class Artifact {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
+                ", category='" + category.toString() + '\'' +
                 '}';
     }
 }

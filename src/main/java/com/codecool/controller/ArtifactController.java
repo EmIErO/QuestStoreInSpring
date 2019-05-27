@@ -1,7 +1,5 @@
 package com.codecool.controller;
 
-import com.codecool.model.Artifact;
-import com.codecool.repo.ArtifactRepo;
 import com.codecool.service.ArtifactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
