@@ -7,4 +7,6 @@ import java.util.List;
 public interface ArtifactService {
 
     List<Artifact> getAllArtifacts();
+
+    void addArtifact(Artifact artifact);
 }

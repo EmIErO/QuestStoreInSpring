@@ -22,4 +22,9 @@ public class ArtifactServiceImpl implements ArtifactService {
     public List<Artifact> getAllArtifacts() {
         return artifactRepo.getAllArtifacts();
     }
+
+    @Override
+    public void addArtifact(Artifact artifact) {
+        artifactRepo.addArtifact(artifact);
+    }
 }

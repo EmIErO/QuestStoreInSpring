@@ -9,4 +9,6 @@ public interface ArtifactRepo {
     List<Artifact> getAllArtifacts();
 
     Artifact getArtifactById(int id);
+
+    void addArtifact(Artifact artifact);
 }

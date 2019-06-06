@@ -26,6 +26,7 @@
                         <h3>${artifact.name}</h3>
                         <p>${artifact.description}</p>
                         <p>${artifact.price} Codecool Coins</p>
+                        <P>${artifact.category}</P>
                     </div>
                 </div>
             </div>

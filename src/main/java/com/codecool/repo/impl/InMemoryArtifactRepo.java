@@ -13,6 +13,11 @@ public class InMemoryArtifactRepo implements ArtifactRepo {
 
     private List<Artifact> listOfArtifacts = new ArrayList<>();
 
+    @Override
+    public void addArtifact(Artifact artifact) {
+        this.listOfArtifacts.add((artifact));
+    }
+
     public InMemoryArtifactRepo() {
         Artifact consultation = new Artifact("Consultation", 50,
                 "One hour of private consultation with chosen mentor.",
