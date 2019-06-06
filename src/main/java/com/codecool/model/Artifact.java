@@ -58,7 +58,7 @@ public class Artifact {
     public void setCategory(ArtifactCategory category) {
         this.category = category;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
