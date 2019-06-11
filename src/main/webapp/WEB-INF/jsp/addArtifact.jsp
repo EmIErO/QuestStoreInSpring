@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
 <head>
@@ -24,21 +25,27 @@
             <legend>Add new artifact</legend>
 
             <div class="form-group">
-                <label class="control-label col-lg-2 col-lg-2" for="artifactId">Id artefaktu</label>
+                <label class="control-label col-lg-2 col-lg-2" for="artifactId">
+                    <spring:message code="addArtifact.form.artifactId.label"/>
+                </label>
                 <div class="col-lg-10">
                     <form:input id="artifactId" path="artifactId" type="text" class="form:input-large"/>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-lg-2" for="name">Name</label>
+                <label class="control-label col-lg-2" for="name">
+                    <spring:message code="addArtifact.form.name.label"/>
+                </label>
                 <div class="col-lg-10">
                     <form:input id="name" path="name" type="text" class="form:input-large"/>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-lg-2" for="price">Price</label>
+                <label class="control-label col-lg-2" for="price">
+                    <spring:message code="addArtifact.form.price.label"/>
+                </label>
                 <div class="col-lg-10">
                     <div class="form:input-prepend">
                         <form:input id="unitPrice" path="price" type="text" class="form:input-large"/>
@@ -47,17 +54,23 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-lg-2" for="description">Description</label>
+                <label class="control-label col-lg-2" for="description">
+                    <spring:message code="addArtifact.form.description.label" />
+                </label>
                 <div class="col-lg-10">
                     <form:textarea id="description" path="description" rows = "2"/>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-lg-2" for="category">Category</label>
+                <label class="control-label col-lg-2" for="category">
+                    <spring:message code="addArtifact.form.category.label"/>
+                </label>
                 <div class="col-lg-10">
-                    <form:radiobutton path="category" value="Individual"/> Individual
-                    <form:radiobutton path="category" value="Group"/> Group
+                    <form:radiobutton path="category" value="individual"/>
+                    <spring:message code="addArtifact.form.category.individual.label"/>
+                    <form:radiobutton path="category" value="group"/>
+                    <spring:message code="addArtifact.form.category.group.label"/>
                 </div>
             </div>
 
