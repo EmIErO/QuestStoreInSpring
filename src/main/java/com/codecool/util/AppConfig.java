@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigurer {
+public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -25,10 +25,5 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
-    }
-
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToEnumConverter());
     }
 }

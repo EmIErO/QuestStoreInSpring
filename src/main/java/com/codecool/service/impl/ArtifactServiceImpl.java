@@ -1,6 +1,7 @@
 package com.codecool.service.impl;
 
 import com.codecool.model.Artifact;
+import com.codecool.model.ArtifactCategory;
 import com.codecool.repo.ArtifactRepo;
 import com.codecool.service.ArtifactService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class ArtifactServiceImpl implements ArtifactService {
     @Override
     public void addArtifact(Artifact artifact) {
         artifactRepo.addArtifact(artifact);
+    }
+
+    @Override
+    public List<Artifact> getArtifactByCategory(ArtifactCategory category) {
+        return artifactRepo.getArtifactsByCategory(category);
     }
 }

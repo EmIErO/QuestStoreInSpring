@@ -27,6 +27,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
+
+// checkout pom and tests: https://www.logicbig.com/tutorials/spring-framework/spring-web-mvc/spring-model-attribute-method.html
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {TestContext.class, AppConfig.class})
 @WebAppConfiguration //here it ensures that AppConfig.class is loaded as the application context

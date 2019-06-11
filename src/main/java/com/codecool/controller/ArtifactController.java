@@ -1,10 +1,13 @@
 package com.codecool.controller;
 
 import com.codecool.model.Artifact;
+import com.codecool.model.ArtifactCategory;
+import com.codecool.model.converter.StringToEnumConverter;
 import com.codecool.service.ArtifactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/artifacts")
@@ -38,8 +41,19 @@ public class ArtifactController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddNewArtifactForm(@ModelAttribute("newArtifact") Artifact newArtifact) {
-        artifactService.addArtifact(newArtifact);
-        return "redirect: /artifacts";
+    public String processAddNewArtifactForm(@ModelAttribute("newArtifact") Artifact artifact) {
+        artifactService.addArtifact(artifact);
+        return "redirect:/artifacts";
+    }
+
+    @RequestMapping("/category/{category}")
+    public String getArtifactsByCategory(Model model, @PathVariable ArtifactCategory category) {
+        model.addAttribute("artifacts", artifactService.getArtifactByCategory(category));
+        return "artifacts";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        dataBinder.registerCustomEditor(ArtifactCategory.class, new StringToEnumConverter());
     }
 }

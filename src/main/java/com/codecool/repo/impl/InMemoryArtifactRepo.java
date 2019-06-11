@@ -13,10 +13,6 @@ public class InMemoryArtifactRepo implements ArtifactRepo {
 
     private List<Artifact> listOfArtifacts = new ArrayList<>();
 
-    @Override
-    public void addArtifact(Artifact artifact) {
-        this.listOfArtifacts.add((artifact));
-    }
 
     public InMemoryArtifactRepo() {
         Artifact consultation = new Artifact("Consultation", 50,
@@ -47,6 +43,11 @@ public class InMemoryArtifactRepo implements ArtifactRepo {
     }
 
     @Override
+    public void addArtifact(Artifact artifact) {
+        this.listOfArtifacts.add((artifact));
+    }
+
+    @Override
     public List<Artifact> getAllArtifacts() {
         return listOfArtifacts;
     }
@@ -58,5 +59,16 @@ public class InMemoryArtifactRepo implements ArtifactRepo {
         for (Artifact artifact : listOfArtifacts)
             if (artifact.getArtifactId() == id) return artifact;
         throw new IllegalArgumentException("Artifact with id: " + id + " does not exist.");
+    }
+
+    @Override
+    public List<Artifact> getArtifactsByCategory(ArtifactCategory category) {
+        List<Artifact> artifactsByCategory = new ArrayList<>();
+        for (Artifact artifact : listOfArtifacts) {
+            if (artifact.getCategory().equals(category)) {
+                artifactsByCategory.add(artifact);
+            }
+        }
+        return artifactsByCategory;
     }
 }
