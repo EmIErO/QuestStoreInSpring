@@ -16,6 +16,7 @@
         <div class="container">
             <h1>Artifacts</h1>
             <p>Add new artifact</p>
+            <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-danger btn-mini pull-right">Log out</a>
         </div>
     </div>
 </section>

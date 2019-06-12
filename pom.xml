@@ -52,7 +52,24 @@
             <artifactId>spring-beans</artifactId>
             <version>4.3.0.RELEASE</version>
         </dependency>
-
+        <!--spring security config-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.1.4.RELEASE</version>
+            <!--since Spring 3.2 spring-asm is included in Spring-core module, defining it twice will end in java.lang.incompatibleClassChangeError-->
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-asm</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency>
 
 
         <dependency>
