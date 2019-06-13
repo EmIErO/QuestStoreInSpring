@@ -8,7 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <title>Produkty</title>
+    <title>Add artifacts</title>
 </head>
 <body>
 <section>
@@ -21,7 +21,7 @@
     </div>
 </section>
 <section class="container">
-    <form:form  modelAttribute="newArtifact" class="form-horizontal">
+    <form:form  modelAttribute="newArtifact" class="form-horizontal" enctype="multipart/form-data">
         <fieldset>
             <legend>Add new artifact</legend>
 
@@ -76,8 +76,17 @@
             </div>
 
             <div class="form-group">
+                <label class="control-label col-lg-2" for="artifactImage">
+                    <spring:message code="addArtifact.form.artifactImage.label"/>
+                </label>
+                <div class="col-lg-10">
+                    <form:input id="artifactImage" path="artifactImage" type="file" class="form:input large" />
+                </div>
+            </div>
+
+            <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" id="btnAdd" class="btn btn-primary" value ="Dodaj"/>
+                    <input type="submit" id="btnAdd" class="btn btn-primary" value ="Add"/>
                 </div>
             </div>
 

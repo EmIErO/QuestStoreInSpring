@@ -1,5 +1,7 @@
 package com.codecool.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Objects;
 
 public class Artifact {
@@ -9,6 +11,7 @@ public class Artifact {
     private int price;
     private String description;
     private ArtifactCategory category;
+    private MultipartFile artifactImage;
 
     public Artifact(String name, int price, String description, ArtifactCategory category) {
         this.name = name;
@@ -57,6 +60,14 @@ public class Artifact {
 
     public void setCategory(ArtifactCategory category) {
         this.category = category;
+    }
+
+    public MultipartFile getArtifactImage() {
+        return artifactImage;
+    }
+
+    public void setArtifactImage(MultipartFile artifactImage) {
+        this.artifactImage = artifactImage;
     }
 
     @Override

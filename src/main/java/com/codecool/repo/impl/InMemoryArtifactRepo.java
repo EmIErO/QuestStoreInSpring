@@ -20,7 +20,7 @@ public class InMemoryArtifactRepo implements ArtifactRepo {
                 ArtifactCategory.INDIVIDUAL);
         consultation.setArtifactId(1);
 
-        Artifact tipping = new Artifact("Crown of prestige", 20,
+        Artifact tipping = new Artifact("Tipping the fanfare-guy", 20,
                 "The student can use jukebox exclusively for half day.",
                 ArtifactCategory.INDIVIDUAL);
         tipping.setArtifactId(2);

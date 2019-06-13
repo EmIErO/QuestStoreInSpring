@@ -1,6 +1,3 @@
-<!--to inform Spring about security context when application is started, configure 'contextConfigLocation' param in web.xml,
-now Spring will create and manage all beans connected to security-->
-
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -15,9 +12,8 @@ now Spring will create and manage all beans connected to security-->
     <security:http auto-config="true">
         <!--here we tell Spring to give access this page (defined in 'pattern') only to authenticated user (defined in 'access')-->
         <security:intercept-url pattern="/artifacts/add" access="ROLE_MENTOR" />
-
+        <!--here we define page that will be displayed after successful login ('/artifacts/add')-->
         <security:form-login login-page="/login"
-                             <!--here we define page that will be displayed after successful login-->
                              default-target-url="/artifacts/add"
                              authentication-failure-url="/loginfailed"/>
         <!--here we define what page should be displayed after successful logout-->
@@ -33,3 +29,5 @@ now Spring will create and manage all beans connected to security-->
         </security:authentication-provider>
     </security:authentication-manager>
 </beans>
+        <!--to inform Spring about security context when application is started, configure 'contextConfigLocation' param in web.xml,-->
+        <!--now Spring will create and manage all beans connected to security-->

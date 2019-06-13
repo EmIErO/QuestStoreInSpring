@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 
 @RequestMapping("/artifacts")
 @Controller
@@ -41,8 +45,21 @@ public class ArtifactController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddNewArtifactForm(@ModelAttribute("newArtifact") Artifact artifact) {
-        artifactService.addArtifact(artifact);
+    public String processAddNewArtifactForm(@ModelAttribute("newArtifact") Artifact artifactToBeAdded, HttpServletRequest request) {
+        MultipartFile artifactImg = artifactToBeAdded.getArtifactImage();
+        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        System.out.println(rootDirectory);
+
+        if (artifactImg != null && !artifactImg.isEmpty()) {
+            try {
+                artifactImg.transferTo(new File(rootDirectory + "/resources/images/"
+                        + artifactToBeAdded.getName() + ".jpg"));
+
+            } catch (Exception e) {
+                throw new RuntimeException("Saving artifact's image was unsuccessful", e);
+            }
+        }
+        artifactService.addArtifact(artifactToBeAdded);
         return "redirect:/artifacts";
     }
 
