@@ -25,6 +25,11 @@ public class ArtifactServiceImpl implements ArtifactService {
     }
 
     @Override
+    public Artifact getArtifactById(int id) {
+        return artifactRepo.getArtifactById(id);
+    }
+
+    @Override
     public void addArtifact(Artifact artifact) {
         artifactRepo.addArtifact(artifact);
     }

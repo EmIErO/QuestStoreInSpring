@@ -1,5 +1,8 @@
 package com.codecool.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public enum ArtifactCategory {
     GROUP {
         public String toString() {

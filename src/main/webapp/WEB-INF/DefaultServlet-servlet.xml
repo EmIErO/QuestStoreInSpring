@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-    <mvc:annotation-driven />
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
+    <mvc:annotation-driven content-negotiation-manager="cnManager"/>
     <context:component-scan base-package="com.codecool" />
     <mvc:resources  location="/resources/"  mapping="/resource/**"/>
-
 
     <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name = "prefix" value = "/WEB-INF/jsp/" />
@@ -30,4 +33,43 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="10240000"/>
     </bean>
+
+    <bean id="cnManager"  class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="ignoreAcceptHeader" value="false"/>
+        <property name="favorPathExtension" value="true" />
+        <property name="useJaf" value="false" />
+        <property name="defaultContentType" value="application/json" />
+
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html"/>
+                <entry key="json" value="application/json"/>
+                <entry key="xml" value="application/xml"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="contentNegotiationManager" ref="cnManager" />
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/WEB-INF/jsp/" />
+                    <property name="suffix" value=".jsp" />
+                </bean>
+                <bean class="com.codecool.view.JsonViewResolver"></bean>
+                <bean class="com.codecool.view.MarshallingXmlViewResolver" >
+                    <constructor-arg ref="marshaller" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <oxm:jaxb2-marshaller id="marshaller" >
+        <oxm:class-to-be-bound name="com.codecool.model.Artifact" />
+        <oxm:class-to-be-bound name="com.codecool.model.ArtifactCategory" />
+        <oxm:class-to-be-bound name="com.codecool.model.wrapper.ListWrapper" />
+    </oxm:jaxb2-marshaller>
+
 </beans>
+

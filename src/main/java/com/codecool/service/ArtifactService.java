@@ -12,4 +12,6 @@ public interface ArtifactService {
     List<Artifact> getArtifactByCategory(ArtifactCategory category);
 
     void addArtifact(Artifact artifact);
+
+    Artifact getArtifactById(int id);
 }

@@ -19,7 +19,7 @@
 
 <section class="container">
     <div class="row">
-        <c:forEach items="${artifacts}" var="artifact">
+        <c:forEach items="${artifactsWrapper.content}" var="artifact">
             <div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
                 <div class="thumbnail">
                     <div class="caption">

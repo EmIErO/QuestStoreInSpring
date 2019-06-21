@@ -3,8 +3,10 @@ package com.codecool.controller;
 import com.codecool.model.Artifact;
 import com.codecool.model.ArtifactCategory;
 import com.codecool.model.converter.StringToEnumConverter;
+import com.codecool.model.wrapper.ListWrapper;
 import com.codecool.service.ArtifactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -31,10 +33,15 @@ public class ArtifactController {
         return "artifacts";
     }
 
-    @RequestMapping("/all")
+    @RequestMapping(value = "/all", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_HTML_VALUE, MediaType.APPLICATION_XML_VALUE})
     public String listAll(Model model) {
-        model.addAttribute("artifacts", artifactService.getAllArtifacts());
+        model.addAttribute("artifactsWrapper", new ListWrapper<Artifact>(artifactService.getAllArtifacts()));
         return "artifacts";
+    }
+
+    @RequestMapping("/{id}")
+    public Artifact getArtifactById(@PathVariable int id) {
+        return artifactService.getArtifactById(id);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -48,7 +55,6 @@ public class ArtifactController {
     public String processAddNewArtifactForm(@ModelAttribute("newArtifact") Artifact artifactToBeAdded, HttpServletRequest request) {
         MultipartFile artifactImg = artifactToBeAdded.getArtifactImage();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        System.out.println(rootDirectory);
 
         if (artifactImg != null && !artifactImg.isEmpty()) {
             try {
@@ -65,7 +71,7 @@ public class ArtifactController {
 
     @RequestMapping("/category/{category}")
     public String getArtifactsByCategory(Model model, @PathVariable ArtifactCategory category) {
-        model.addAttribute("artifacts", artifactService.getArtifactByCategory(category));
+        model.addAttribute("artifactsWrapper", new ListWrapper<Artifact>(artifactService.getArtifactByCategory(category)));
         return "artifacts";
     }
 

@@ -54,8 +54,6 @@ public class InMemoryArtifactRepo implements ArtifactRepo {
 
     @Override
     public Artifact getArtifactById(int id) {
-//        Artifact artifactById = null;
-
         for (Artifact artifact : listOfArtifacts)
             if (artifact.getArtifactId() == id) return artifact;
         throw new IllegalArgumentException("Artifact with id: " + id + " does not exist.");

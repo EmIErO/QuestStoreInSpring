@@ -1,9 +1,11 @@
 package com.codecool.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
-
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
+@XmlRootElement
 public class Artifact {
 
     private int artifactId;
@@ -11,6 +13,7 @@ public class Artifact {
     private int price;
     private String description;
     private ArtifactCategory category;
+    @JsonIgnore
     private MultipartFile artifactImage;
 
     public Artifact(String name, int price, String description, ArtifactCategory category) {
@@ -62,6 +65,7 @@ public class Artifact {
         this.category = category;
     }
 
+    @XmlTransient
     public MultipartFile getArtifactImage() {
         return artifactImage;
     }
