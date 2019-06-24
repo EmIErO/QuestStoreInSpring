@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
 <head>
@@ -14,16 +13,23 @@
 <section>
     <div class="jumbotron">
         <div class="container">
-            <h1>Artifacts</h1>
-            <p>Add new artifact</p>
+            <h1><spring:message code="addArtifact.header.artifacts.label" /></h1>
+            <p><spring:message code="addArtifact.header.addNewArtifact.label" /></p>
             <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-danger btn-mini pull-right">Log out</a>
+            <div class="pull-right" style="padding-right: 50px">
+                <a href="?language=en">
+                    <spring:message code="common.language.EN.label" />
+                </a> | <a href="?language=pl">
+                <spring:message code="common.language.PL.label" />
+            </a>
+            </div>
         </div>
     </div>
 </section>
 <section class="container">
     <form:form  modelAttribute="newArtifact" class="form-horizontal" enctype="multipart/form-data">
         <fieldset>
-            <legend>Add new artifact</legend>
+            <legend><spring:message code="addArtifact.header.addNewArtifact.label" /> </legend>
 
             <div class="form-group">
                 <label class="control-label col-lg-2 col-lg-2" for="artifactId">
@@ -86,7 +92,8 @@
 
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" id="btnAdd" class="btn btn-primary" value ="Add"/>
+                    <input type="submit" id="btnAdd" class="btn btn-primary"
+                           value = <spring:message code="buttons.addButton.label"/> />
                 </div>
             </div>
 
