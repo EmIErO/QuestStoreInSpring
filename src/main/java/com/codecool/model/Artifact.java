@@ -2,6 +2,9 @@ package com.codecool.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
@@ -9,8 +12,12 @@ import java.util.Objects;
 public class Artifact {
 
     private int artifactId;
+//    @NotNull(message = "label.notNull.message")
+//    @Size(min = 3, max = 20, message = "size.artifact.name.validation")
     private String name;
     private int price;
+//    @NotNull(message = "label.notNull.message")
+//    @Size(min = 5, max = 100, message = "size.artifact.description.validation")
     private String description;
     private ArtifactCategory category;
     @JsonIgnore

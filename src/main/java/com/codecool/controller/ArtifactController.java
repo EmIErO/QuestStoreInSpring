@@ -5,10 +5,12 @@ import com.codecool.model.ArtifactCategory;
 import com.codecool.model.converter.StringToEnumConverter;
 import com.codecool.model.wrapper.ListWrapper;
 import com.codecool.service.ArtifactService;
+import com.codecool.validator.ArtifactValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +23,9 @@ import java.io.File;
 public class ArtifactController {
 
     private ArtifactService artifactService;
+
+    @Autowired
+    private ArtifactValidator validator;
 
     @Autowired
     public ArtifactController(ArtifactService artifactService) {
@@ -52,7 +57,14 @@ public class ArtifactController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddNewArtifactForm(@ModelAttribute("newArtifact") Artifact artifactToBeAdded, HttpServletRequest request) {
+    public String processAddNewArtifactForm(@ModelAttribute("newArtifact") Artifact artifactToBeAdded, BindingResult result, HttpServletRequest request) {
+
+        validator.validate(artifactToBeAdded,result);
+
+        if (result.hasErrors()) {
+            return "addArtifact";
+        }
+
         MultipartFile artifactImg = artifactToBeAdded.getArtifactImage();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 

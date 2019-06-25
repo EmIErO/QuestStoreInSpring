@@ -28,6 +28,7 @@
 </section>
 <section class="container">
     <form:form  modelAttribute="newArtifact" class="form-horizontal" enctype="multipart/form-data">
+        <form:errors path="*" cssClass="alert alert-danger" element="div" />
         <fieldset>
             <legend><spring:message code="addArtifact.header.addNewArtifact.label" /> </legend>
 
@@ -35,8 +36,9 @@
                 <label class="control-label col-lg-2 col-lg-2" for="artifactId">
                     <spring:message code="addArtifact.form.artifactId.label"/>
                 </label>
-                <div class="col-lg-10">
+                <div class="col-lg-10" class="form-group">
                     <form:input id="artifactId" path="artifactId" type="text" class="form:input-large"/>
+                    <form:errors path="artifactId" cssClass="text-danger"/>
                 </div>
             </div>
 
@@ -44,11 +46,11 @@
                 <label class="control-label col-lg-2" for="name">
                     <spring:message code="addArtifact.form.name.label"/>
                 </label>
-                <div class="col-lg-10">
+                <div class="col-lg-10" >
                     <form:input id="name" path="name" type="text" class="form:input-large"/>
+                    <form:errors path="name" cssClass="text-danger"/>
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-lg-2" for="price">
                     <spring:message code="addArtifact.form.price.label"/>
@@ -56,6 +58,7 @@
                 <div class="col-lg-10">
                     <div class="form:input-prepend">
                         <form:input id="unitPrice" path="price" type="text" class="form:input-large"/>
+                        <form:errors path="price" cssClass="text-danger"/>
                     </div>
                 </div>
             </div>
@@ -78,6 +81,7 @@
                     <spring:message code="addArtifact.form.category.individual.label"/>
                     <form:radiobutton path="category" value="group"/>
                     <spring:message code="addArtifact.form.category.group.label"/>
+                    <form:errors path="category" cssClass="text-danger"/>
                 </div>
             </div>
 

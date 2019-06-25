@@ -136,12 +136,12 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-            <!--<artifactId>jackson-core</artifactId>-->
-            <!--<version>2.2.1</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
+        <!--for validation annotations-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.10.Final</version>
+        </dependency>
 
         <!--necessary to upload files through http post request-->
         <dependency>
