@@ -7,6 +7,8 @@ import com.codecool.model.wrapper.ListWrapper;
 import com.codecool.service.ArtifactService;
 import com.codecool.validator.ArtifactValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +24,14 @@ import java.io.File;
 @Controller
 public class ArtifactController {
 
+    @Autowired
     private ArtifactService artifactService;
 
     @Autowired
     private ArtifactValidator validator;
 
     @Autowired
+
     public ArtifactController(ArtifactService artifactService) {
         this.artifactService = artifactService;
     }

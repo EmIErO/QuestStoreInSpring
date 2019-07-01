@@ -4,12 +4,16 @@ import org.mockito.Mockito;
 import com.codecool.service.ArtifactService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
-//@Configuration
+@Profile("test")
+@Configuration
 public class TestContext {
 
     @Bean
-    public ArtifactService artifactService() {
+    //@Primary
+    public ArtifactService artifactServiceMock() {
         return Mockito.mock(ArtifactService.class);
     }
 }

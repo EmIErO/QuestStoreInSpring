@@ -1,16 +1,20 @@
 package com.codecool.controller;
 
+
 import com.codecool.model.Artifact;
 import com.codecool.model.ArtifactCategory;
 import com.codecool.service.ArtifactService;
-import com.codecool.util.AppConfig;
 import com.codecool.util.TestContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -27,28 +31,26 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
-// checkout pom and tests: https://www.logicbig.com/tutorials/spring-framework/spring-web-mvc/spring-model-attribute-method.html
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestContext.class, AppConfig.class})
-@WebAppConfiguration //here it ensures that AppConfig.class is loaded as the application context
-public class ArtifactControllerTest {
+@ContextConfiguration //(locations = {"file:src/main/webapp/WEB-INF/DefaultServlet-servlet.xml"})
+@WebAppConfiguration
+public class ArtifactControllerWebContextTest {
 
-    // this class is the main entry point of our tests, we can execute requests by calling its perform() method
     private MockMvc mockMvc;
-
 
     @Autowired
     private ArtifactService artifactServiceMock;
 
     @Autowired
-    private WebApplicationContext webApplicationContext;
+    private WebApplicationContext wac;
 
     @Before
     public void setUp() {
         Mockito.reset(artifactServiceMock);
-
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
     @Test
@@ -72,32 +74,41 @@ public class ArtifactControllerTest {
         when(artifactServiceMock.getAllArtifacts()).thenReturn(Arrays.asList(first, second));
 
         mockMvc.perform(get("/artifacts/all"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("artifacts"))
-                .andExpect(forwardedUrl("WEB-INF/jsp/artifacts.jsp"))
-                .andExpect(model().attribute("artifacts", hasSize(2)))
-                .andExpect(model().attribute("artifacts", hasItem(
+                .andExpect(forwardedUrl("/WEB-INF/jsp/artifacts.jsp"))
+                .andExpect(model().attribute("artifactsWrapper", hasProperty("content", hasItem(
                         allOf(
-                                hasProperty("id", is(1)),
+                                //hasProperty("id", is(1)),
                                 hasProperty("name", is("consultation")),
                                 hasProperty("price", is(20)),
                                 hasProperty("description", is("Consult a mentor")),
                                 hasProperty("category", is(ArtifactCategory.INDIVIDUAL))
                         )
-                )))
-                .andExpect(model().attribute("artifacts", hasItem(
+                        ))))
+                .andExpect(model().attribute("artifactsWrapper", hasProperty("content", hasItem(
                         allOf(
-                                hasProperty("id", is(2)),
+                                //hasProperty("id", is(2)),
                                 hasProperty("name", is("teleport")),
                                 hasProperty("price", is(100)),
                                 hasProperty("description", is("Lessons outside")),
                                 hasProperty("category", is(ArtifactCategory.GROUP))
-                        )
-                )))
-                ;
+                        )))));
 
         verify(artifactServiceMock, times(1)).getAllArtifacts();
         verifyNoMoreInteractions(artifactServiceMock);
     }
 
+
+
+
+
+
+    @Configuration
+    @Import(TestContext.class)
+    // The classpath root contains /WEB-INF/classes, so the path should be relative to that.
+    @ImportResource({"file:src/main/webapp/WEB-INF/DefaultServlet-servlet.xml"})
+            //"classpath:**/security-context.xml"})
+    public static class ContextConfig {}
 }

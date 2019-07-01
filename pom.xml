@@ -14,7 +14,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
-        <junit.jupiter.version>5.0.0-M4</junit.jupiter.version>
+        <junit.jupiter.version>5.2.0</junit.jupiter.version>
         <junit.platform.version>1.0.0-M4</junit.platform.version>
     </properties>
 
@@ -45,6 +45,19 @@
             <version>4.3.0.RELEASE</version>
             <scope>test</scope>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-test-mvc</artifactId>-->
+            <!--<version>2.0.0</version>-->
+            <!--<scope>test</scope>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>hamcrest-all</artifactId>-->
+                    <!--<groupId>org.hamcrest</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
 
         <!--//-->
         <dependency>
@@ -143,6 +156,19 @@
             <version>6.0.10.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-el-api</artifactId>
+            <version>8.5.14</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper-el</artifactId>
+            <version>8.5.14</version>
+            <scope>test</scope>
+        </dependency>
+
         <!--necessary to upload files through http post request-->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -159,31 +185,32 @@
         </dependency>
 
         <!--// junit 4 dependency-->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.hamcrest</groupId>
-                    <artifactId>hamcrest-core</artifactId>
-                </exclusion>
-            </exclusions>
-
-        </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.junit.jupiter</groupId>-->
-            <!--<artifactId>junit-jupiter-engine</artifactId>-->
-            <!--<version>${junit.jupiter.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.junit.platform</groupId>-->
-            <!--<artifactId>junit-platform-runner</artifactId>-->
-            <!--<version>${junit.platform.version}</version>-->
+            <!--<groupId>junit</groupId>-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<version>4.12</version>-->
             <!--<scope>test</scope>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.hamcrest</groupId>-->
+                    <!--<artifactId>hamcrest-core</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <!--// Hamcrest matchers are used when we are writing ASSERTIONS for RESPONSES-->
 
@@ -211,7 +238,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>2.11.0</version>
+            <version>2.23.4</version>
             <scope>test</scope>
         </dependency>
 
