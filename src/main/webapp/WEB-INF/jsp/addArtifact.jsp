@@ -69,6 +69,7 @@
                 </label>
                 <div class="col-lg-10">
                     <form:textarea id="description" path="description" rows = "2"/>
+                    <form:errors path="description" cssClass="text-danger"/>
                 </div>
             </div>
 
@@ -91,6 +92,7 @@
                 </label>
                 <div class="col-lg-10">
                     <form:input id="artifactImage" path="artifactImage" type="file" class="form:input large" />
+                    <form:errors path="artifactImage" cssClass="text-danger"/>
                 </div>
             </div>
 
